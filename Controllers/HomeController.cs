@@ -1,19 +1,24 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using MVC_Seguimiento3.Models;
+using MVC_Seguimiento3.Services;
 
 namespace MVC_Seguimiento3.Controllers;
 
 public class HomeController : Controller
 {
-    public IActionResult Index()
+    private readonly EscuelaService _escuela;
+
+    // El servicio llega por inyeccion
+    public HomeController(EscuelaService escuela)
     {
-        return View();
+        _escuela = escuela;
     }
 
-    public IActionResult Privacy()
+   
+    public IActionResult Index()
     {
-        return View();
+        return View(_escuela.Cursos);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
