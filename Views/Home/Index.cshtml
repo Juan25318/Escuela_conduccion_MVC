@@ -1,8 +1,215 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IReadOnlyList<Curso>
+@{
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<header class="encabezado-principal text-white text-center py-5">
+    <div class="container">
+        <h1 class="display-4 fw-bold">Conduce seguro</h1>
+        <p class="lead mb-3">Aprende a conducir con seguridad y confianza</p>
+        <a class="btn btn-light btn-lg" asp-controller="Inscripciones" asp-action="Create">Inscríbete ahora</a>
+    </div>
+</header>
+
+<main class="container py-5">
+
+    <section id="inicio" class="my-5">
+        <div class="row g-4 align-items-center">
+            <div class="col-12 col-md-5 text-center">
+                <img src="~/img/Logo.png" alt="Conduce Seguro" class="img-fluid">
+            </div>
+
+            <div class="col-12 col-md-7">
+                <h2>Bienvenido a Conduce seguro</h2>
+                <p>En <strong>Conduce seguro</strong> formamos conductores responsables mediante clases teóricas y
+                    prácticas dictadas por instructores certificados. Nuestro objetivo es que aprendas a manejar
+                    con seguridad, respetando las normas de tránsito y cuidando tu vida y la de los demás.</p>
+
+                <p>Si quieres conocer más sobre las normas de tránsito, puedes visitar la
+                    <a href="https://www.ansv.gov.co/" target="_blank">Agencia Nacional de Seguridad Vial</a>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap: accordion -->
+    <section id="nosotros" class="my-5">
+        <h2 class="text-center mb-4">Sobre Nosotros</h2>
+
+        <div class="accordion" id="accordionNosotros">
+            <div class="accordion-item">
+                <h3 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseMision" aria-expanded="true" aria-controls="collapseMision">
+                        Nuestra Misión
+                    </button>
+                </h3>
+                <div id="collapseMision" class="accordion-collapse collapse show" data-bs-parent="#accordionNosotros">
+                    <div class="accordion-body">
+                        Nuestra misión es enseñar a conducir de manera responsable, brindando herramientas
+                        teóricas y prácticas que reduzcan el riesgo de accidentes de tránsito y formen conductores
+                        conscientes de su entorno.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h3 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseImportancia" aria-expanded="false" aria-controls="collapseImportancia">
+                        ¿Por qué es importante aprender a conducir de forma responsable?
+                    </button>
+                </h3>
+                <div id="collapseImportancia" class="accordion-collapse collapse" data-bs-parent="#accordionNosotros">
+                    <div class="accordion-body">
+                        Conducir responsablemente protege tu vida, la de tus compañeros y la de los peatones.
+                        Además, te permite obtener y mantener tu licencia sin contratiempos legales ni económicos.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="cursos" class="my-5">
+        <h2 class="text-center mb-4">Nuestros cursos</h2>
+        <p class="text-center">Ofrecemos una variedad de cursos diseñados para mejorar tus habilidades de
+            conducción y promover la seguridad vial.</p>
+
+        <div class="row g-4">
+            <div class="col-12 col-md-6">
+                <div class="tarjeta p-4 h-100">
+                    <h3 class="h5">Cursos disponibles</h3>
+                    <ul class="mb-0">
+                        @foreach (var curso in Model)
+                        {
+                            <li>@curso.Nombre</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <div class="tarjeta p-4 h-100">
+                    <h3 class="h5">Beneficios de tomar nuestros cursos</h3>
+                    <ol class="mb-0">
+                        <li>Instructores certificados y con experiencia</li>
+                        <li>Vehículos en buen estado para las clases prácticas</li>
+                        <li>Material de apoyo teórico incluido</li>
+                        <li>Certificado al finalizar el curso</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap: cards -->
+    <section id="vehiculos" class="my-5">
+        <h2 class="text-center mb-4">Nuestros vehículos</h2>
+
+        <div class="row g-4">
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm">
+                    <img src="~/img/Vehiculo.png" class="card-img-top" alt="Automóvil">
+                    <div class="card-body">
+                        <h3 class="card-title h5">Automóviles</h3>
+                        <p class="card-text">Contamos con automóviles de transmisión manual y automática para
+                            ofrecer una experiencia de aprendizaje completa.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm">
+                    <img src="~/img/Motocicleta.png" class="card-img-top" alt="Motocicleta">
+                    <div class="card-body">
+                        <h3 class="card-title h5">Motocicletas</h3>
+                        <p class="card-text">Nuestras motocicletas cuentan con todos los elementos de seguridad
+                            necesarios para una experiencia de aprendizaje segura.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm">
+                    <img src="~/img/Camion.png" class="card-img-top" alt="Camiones">
+                    <div class="card-body">
+                        <h3 class="card-title h5">Camiones</h3>
+                        <p class="card-text">Nuestros camiones están equipados con los últimos avances en
+                            tecnología de seguridad para garantizar una experiencia de aprendizaje segura.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm">
+                    <img src="~/img/Conduccion_Defensiva.png" class="card-img-top" alt="Conducción Defensiva">
+                    <div class="card-body">
+                        <h3 class="card-title h5">Conducción defensiva</h3>
+                        <p class="card-text">Nuestra clase de conducción defensiva te enseña técnicas para
+                            anticipar peligros y responder adecuadamente en situaciones de emergencia.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="multimedia" class="my-5">
+        <h2 class="text-center mb-4">Multimedia</h2>
+
+        <div class="row g-4">
+            <div class="col-12 col-lg-8 mx-auto">
+                <h3 class="h5">Importancia de la Seguridad Vial</h3>
+                <p>Recomendaciones importantes para mantenerse seguro en la carretera.</p>
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://www.youtube.com/embed/mqJ6jvzc6pw" title="Video sobre seguridad vial"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="tarifas" class="my-5">
+        <h2 class="text-center mb-4">Cursos y Tarifas</h2>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle">
+                <caption>Tabla de cursos, duración, horarios y precios</caption>
+                <thead class="table-dark">
+                    <tr>
+                        <th>Categoría</th>
+                        <th>Curso</th>
+                        <th>Duración</th>
+                        <th>Horario</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var curso in Model)
+                    {
+                        <tr>
+                            <td><strong>@curso.Categoria</strong></td>
+                            <td>@curso.Nombre</td>
+                            <td>@curso.Duracion</td>
+                            <td>@curso.Horario</td>
+                            <td>@Formato.Dinero(curso.Precio)</td>
+                        </tr>
+                    }
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <td colspan="5">Los precios incluyen material de estudio y certificado de finalización.</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="text-center">
+            <a class="btn btn-primary btn-lg" asp-controller="Inscripciones" asp-action="Create">Quiero inscribirme</a>
+        </div>
+    </section>
+
+</main>

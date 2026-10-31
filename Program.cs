@@ -5,10 +5,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Habilita controladores y vistas Razor MVC
 builder.Services.AddControllersWithViews();
 
-// Servicio en memoria: una sola instancia durante toda la vida de la aplicación
+// Servicio en memoria
 builder.Services.AddSingleton<EscuelaService>();
 
-// Los servicios de hosting en la nube entregan el puerto en la variable PORT
+
 var puerto = Environment.GetEnvironmentVariable("PORT");
 if (!string.IsNullOrEmpty(puerto))
 {
@@ -27,7 +27,7 @@ app.UseAuthorization();
 
 app.MapStaticAssets();
 
-// Ruta por defecto: /{controlador}/{acción}/{id?}
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")

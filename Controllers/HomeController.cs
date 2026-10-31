@@ -9,7 +9,7 @@ public class HomeController : Controller
 {
     private readonly EscuelaService _escuela;
 
-    // El servicio llega por inyeccion
+   
     public HomeController(EscuelaService escuela)
     {
         _escuela = escuela;

@@ -1,0 +1,96 @@
+@model Inscripcion
+@{
+    ViewData["Title"] = "Inscripción";
+    var cursos = (IReadOnlyList<Curso>)ViewBag.Cursos;
+}
+
+<main class="container py-5">
+    <h1 class="text-center mb-2">Inscripción a los cursos</h1>
+    <p class="text-center mb-4">Completa el siguiente formulario para registrar tu inscripción:</p>
+
+    <div class="row g-4">
+        <div class="col-12 col-lg-8">
+
+            
+            <form id="formInscripcion" class="tarjeta p-4" asp-controller="Inscripciones" asp-action="Create" method="post">
+                <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                        <label asp-for="Nombre" class="form-label"></label>
+                        <input asp-for="Nombre" class="form-control" placeholder="Escribe tu nombre" required />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label asp-for="Correo" class="form-label"></label>
+                        <input asp-for="Correo" type="email" class="form-control" placeholder="ejemplo@correo.co" required />
+                        <span asp-validation-for="Correo" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label asp-for="Telefono" class="form-label"></label>
+                        <input asp-for="Telefono" type="tel" class="form-control" required />
+                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label asp-for="Edad" class="form-label"></label>
+                        <input asp-for="Edad" type="number" class="form-control" placeholder="Escribe tu edad" required />
+                        <span asp-validation-for="Edad" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <fieldset class="mt-3">
+                    <legend class="fs-6">Curso de interés</legend>
+                    <label asp-for="CursoId" class="form-label"></label>
+                    <select asp-for="CursoId" class="form-select" required>
+                        <option value="">Selecciona un curso</option>
+                        @foreach (var curso in cursos)
+                        {
+                            <option value="@curso.Id"
+                                    data-precio="@curso.Precio.ToString(System.Globalization.CultureInfo.InvariantCulture)"
+                                    data-duracion="@curso.Duracion">@curso.Nombre</option>
+                        }
+                    </select>
+                    <span asp-validation-for="CursoId" class="text-danger"></span>
+                </fieldset>
+
+                <fieldset class="mt-3">
+                    <legend class="fs-6">Servicios adicionales</legend>
+
+                    <div class="form-check">
+                        <input asp-for="ClasesExtra" class="form-check-input" />
+                        <label asp-for="ClasesExtra" class="form-check-label"></label>
+                        @("(+" + Formato.Dinero(Inscripcion.PrecioClasesExtra) + ")")
+                    </div>
+
+                    <div class="form-check">
+                        <input asp-for="Material" class="form-check-input" />
+                        <label asp-for="Material" class="form-check-label"></label>
+                        @("(+" + Formato.Dinero(Inscripcion.PrecioMaterial) + ")")
+                    </div>
+                </fieldset>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">Enviar Inscripción</button>
+                    <button type="reset" class="btn btn-outline-secondary">Limpiar</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Resumen del costo -->
+        <div class="col-12 col-lg-4">
+            <div class="resumen-costo p-4 h-100">
+                <h2 class="h5">Resumen del costo</h2>
+                <div id="resumenCosto"
+                     data-clases="@Inscripcion.PrecioClasesExtra"
+                     data-material="@Inscripcion.PrecioMaterial">
+                    <p class="mb-0">Selecciona un curso para calcular el valor.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    <script src="~/js/inscripcion.js" asp-append-version="true"></script>
+}
