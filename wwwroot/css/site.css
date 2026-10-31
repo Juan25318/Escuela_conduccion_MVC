@@ -1,31 +1,60 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+:root {
+    --color-principal: #123b6d;
+    --color-secundario: #367c53;
+    --fondo-suave: #c1daee;
 }
 
 body {
-  margin-bottom: 60px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+.encabezado-principal {
+    background-color: var(--color-principal);
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+.tarjeta {
+    background-color: white;
+    border: 1px solid #717171;
+    border-radius: 10px;
+}
+
+.card {
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+.resumen-costo {
+    background-color: var(--fondo-suave);
+    border: 3px solid var(--color-principal);
+    border-radius: 10px;
+}
+
+.resumen-costo .total {
+    color: var(--color-secundario);
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.btn-primary {
+    background-color: var(--color-principal);
+    border-color: var(--color-principal);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-secundario);
+    border-color: var(--color-secundario);
+}
+
+#totalRecaudado {
+    color: var(--color-secundario);
+}
+
+.sin-datos {
+    text-align: center;
+    color: #717171;
 }
